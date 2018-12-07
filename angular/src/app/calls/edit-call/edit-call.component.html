@@ -1,0 +1,82 @@
+<div bsModal
+     #editCallModal="bs-modal"
+     class="modal fade"
+     (onShown)="onShown()"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="editCallModal"
+     aria-hidden="true"
+     [config]="{ backdrop: 'static' }">
+    <div class="modal-dialog">
+        <div #modalContent class="modal-content">
+            <form *ngIf="active"
+                  #editcallForm="ngForm"
+                  id="frm_edit_call"
+                  novalidate
+                  (ngSubmit)="save()">
+                <div class="modal-header">
+                    <button type="button"
+                            class="close"
+                            (click)="close()"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>{{ l("Editcall") }}</span>
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input class="form-control"
+                                   type="text"
+                                   name="TenancyName"
+                                   [(ngModel)]="call.callNumber"
+                                   required
+                                   maxlength="64"
+                                   minlength="2" />
+                            <label class="form-label">{{ l("CallNumber") }}</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text"
+                                   name="Name"
+                                   class="form-control"
+                                   [(ngModel)]="call.description"
+                                   required
+                                   maxlength="128" />
+                            <label class="form-label">{{ l("CallDescription") }}</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text"
+                                   name="UserId"
+                                   class="form-control"
+                                   [(ngModel)]="call.userId"
+                                   required
+                                   maxlength="2" />
+                            <label class="form-label">{{ l("UserId") }}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button [disabled]="saving"
+                            type="button"
+                            class="btn btn-default"
+                            (click)="close()">
+                        {{ l("Cancel") }}
+                    </button>
+                    <button [disabled]="!editcallForm.form.valid || saving"
+                            type="submit"
+                            class="btn btn-primary blue">
+                        {{ l("Save") }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
