@@ -59,3 +59,4 @@ export class CallsComponent extends PagedListingComponentBase<CallDto> {
 
         this.editCallModal.show(callDto.id);
     }
+}
